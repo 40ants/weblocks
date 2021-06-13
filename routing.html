@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Routing &#8212; weblocks/reblocks dev
+ documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Components of Weblocks" href="components.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          weblocks/reblocks</a>
+        <span class="navbar-text navbar-version pull-left"><b>dev
+</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="changelog.html">Changelog</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Documentation <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Components of Weblocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Request Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session.html">Using the Session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="continuations.html">Continuation-based tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependency handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">HTML generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Weblocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">ChangeLog</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Routing</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#extending-the-example-to-each-task-an-id">Extending the example: to each task an id</a></li>
+<li><a class="reference internal" href="#the-task-page-widget">The task-page widget</a></li>
+<li><a class="reference internal" href="#defining-routes">Defining routes</a></li>
+<li><a class="reference internal" href="#path-and-url-parameters">Path and URL parameters</a></li>
+<li><a class="reference internal" href="#redirections">Redirections</a></li>
+<li><a class="reference internal" href="#final-steps">Final steps</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="routing">
+<h1>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h1>
+<p>In the quickstart tutorial, we saw how to create and render widgets,
+and how to react to user events. We also learned that by default the
+app name defined its base url, and how to change it.</p>
+<p>Here, we will extend the example and make each task accessible under
+<code class="docutils literal notranslate"><span class="pre">/tasks/&lt;task</span> <span class="pre">id&gt;</span></code>.</p>
+<p>Before we start, here’s the summary on how to handle routing in
+Weblocks:</p>
+<ul class="simple">
+<li>use <code class="docutils literal notranslate"><span class="pre">weblocks-navigation-widget:defroutes</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">defroutes</span></code> associates URLs (as strings) to a widget:</li>
+</ul>
+<div class="highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">defroutes</span> <span class="nv">tasks-routes</span>
+  <span class="p">(</span><span class="s">&quot;/tasks/\\d+&quot;</span> <span class="p">(</span><span class="nv">make-task-page</span><span class="p">))</span>
+  <span class="p">(</span><span class="s">&quot;/tasks/&quot;</span> <span class="p">(</span><span class="nv">make-task-list</span><span class="p">)))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">weblocks/session:init</span></code> must return an instance of the route
+widget, using the <code class="docutils literal notranslate"><span class="pre">make-tasks-routes</span></code> constructor created by <code class="docutils literal notranslate"><span class="pre">defroutes</span></code>.</li>
+</ul>
+<p>Let’s start. Note that you can see the full code <a class="reference external" href="https://github.com/40ants/weblocks/blob/reblocks/docs/source/routing.lisp">on Github</a>.</p>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">As for this version of Weblocks,
+<code class="docutils literal notranslate"><span class="pre">weblocks-navigation-widget</span></code> is not in Quicklisp
+yet. To install it you need to clone the repository
+somewhere where ASDF will find it, for example, to the
+<code class="docutils literal notranslate"><span class="pre">~/common-lisp/</span></code> or <code class="docutils literal notranslate"><span class="pre">~/quicklisp/local-projects/</span></code>
+directories.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">You can also install the <a class="reference external" href="https://ultralisp.org/">Ultralisp</a> Quicklisp distribution where all Weblocks-related libraries are present and up to date.</p>
+</div>
+<p>Load and import the routing library:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">ql:quickload</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:weblocks-navigation-widget</span><span class="p">))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>The package definition becomes:</p>
+<div class="highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="nv">TODO&gt;</span> <span class="p">(</span><span class="nb">defpackage</span> <span class="nv">todo</span>
+        <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span>
+              <span class="ss">#:weblocks-ui/form</span>
+              <span class="ss">#:weblocks/html</span><span class="p">)</span>
+        <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks/widget</span>
+                      <span class="ss">#:render</span>
+                      <span class="ss">#:update</span>
+                      <span class="ss">#:defwidget</span><span class="p">)</span>
+        <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks/actions</span>
+                      <span class="ss">#:make-js-action</span><span class="p">)</span>
+        <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks/app</span>
+                      <span class="ss">#:defapp</span><span class="p">)</span>
+        <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks-navigation-widget</span>
+                      <span class="ss">#:defroutes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extending-the-example-to-each-task-an-id">
+<h2>Extending the example: to each task an id<a class="headerlink" href="#extending-the-example-to-each-task-an-id" title="Permalink to this headline">¶</a></h2>
+<p>We want each task to have an id, so we add a slot to the <code class="docutils literal notranslate"><span class="pre">task</span></code> widget:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defwidget</span> <span class="nv">task</span> <span class="p">()</span>
+        <span class="p">((</span><span class="nv">title</span>
+          <span class="ss">:initarg</span> <span class="ss">:title</span>
+          <span class="ss">:initform</span> <span class="no">nil</span>
+          <span class="ss">:accessor</span> <span class="nv">title</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">done</span>
+          <span class="ss">:initarg</span> <span class="ss">:done</span>
+          <span class="ss">:initform</span> <span class="no">nil</span>
+          <span class="ss">:accessor</span> <span class="nv">done</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">id</span>
+          <span class="ss">:initarg</span> <span class="ss">:id</span>
+          <span class="ss">:initform</span> <span class="no">nil</span>
+          <span class="ss">:accessor</span> <span class="nv">id</span>
+          <span class="ss">:type</span> <span class="nc">integer</span><span class="p">)))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>We also need a simple in-memory “database”. We’ll use a hash-table to
+save the tasks. It associates an id to the task:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*store*</span> <span class="p">(</span><span class="nb">make-hash-table</span><span class="p">)</span> <span class="s">&quot;Dummy store for tasks: id -&gt; task.&quot;</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>Our task constructor will give them an incremental id:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*counter*</span> <span class="mi">0</span> <span class="s">&quot;Simple counter for the hash table store.&quot;</span><span class="p">)</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">make-task</span> <span class="p">(</span><span class="nv">title</span> <span class="k">&amp;key</span> <span class="nv">done</span><span class="p">)</span>
+        <span class="s">&quot;Create a task and store it by its id.&quot;</span>
+        <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">id</span> <span class="p">(</span><span class="nb">incf</span> <span class="vg">*counter*</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">task</span> <span class="p">(</span><span class="nb">make-instance</span> <span class="ss">&#39;task</span> <span class="ss">:title</span> <span class="nv">title</span> <span class="ss">:done</span> <span class="nv">done</span> <span class="ss">:id</span> <span class="nv">id</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">gethash</span> <span class="nv">id</span> <span class="vg">*store*</span><span class="p">)</span> <span class="nv">task</span><span class="p">)</span>
+          <span class="nv">task</span><span class="p">))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>So we create a utility function to find a task by its id. All this
+could just be an interface to a database.</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">get-task</span> <span class="p">(</span><span class="nv">id</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">gethash</span> <span class="nv">id</span> <span class="vg">*store*</span><span class="p">))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>When we render the tasks list, we add an href on the task, so we can go to <code class="docutils literal notranslate"><span class="pre">/tasks/&lt;id&gt;</span></code>:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">render</span> <span class="p">((</span><span class="nv">task</span> <span class="nv">task</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">with-html</span>
+          <span class="p">(</span><span class="ss">:p</span> <span class="p">(</span><span class="ss">:input</span> <span class="ss">:type</span> <span class="s">&quot;checkbox&quot;</span>
+                      <span class="ss">:checked</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+                      <span class="ss">:onclick</span> <span class="p">(</span><span class="nv">make-js-action</span>
+                                <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="k">&amp;key</span> <span class="k">&amp;allow-other-keys</span><span class="p">)</span>
+                                  <span class="p">(</span><span class="nv">toggle</span> <span class="nv">task</span><span class="p">))))</span>
+              <span class="p">(</span><span class="ss">:span</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">with-html</span>
+                           <span class="p">(</span><span class="ss">:s</span> <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">)))</span>
+                         <span class="p">(</span><span class="ss">:a</span> <span class="ss">:href</span> <span class="p">(</span><span class="nb">format</span> <span class="no">nil</span> <span class="s">&quot;/tasks/~a&quot;</span> <span class="p">(</span><span class="nv">id</span> <span class="nv">task</span><span class="p">))</span> <span class="c1">;; &lt;-- only addition.</span>
+                             <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">)))))))</span><span class="go"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-task-page-widget">
+<h2>The task-page widget<a class="headerlink" href="#the-task-page-widget" title="Permalink to this headline">¶</a></h2>
+<p>In Weblocks, an HTML block that we want to display, and possibly update
+independently, is a widget. Here, we want to show a task’s details on
+their own page, it is then a widget.</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defwidget</span> <span class="nv">task-page</span> <span class="p">()</span>
+        <span class="p">((</span><span class="nv">task</span>
+          <span class="ss">:initarg</span> <span class="ss">:task</span>
+          <span class="ss">:initform</span> <span class="no">nil</span>
+          <span class="ss">:accessor</span> <span class="nv">task</span><span class="p">)))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">render</span> <span class="p">((</span><span class="nv">task-page</span> <span class="nv">task-page</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">task</span> <span class="p">(</span><span class="nv">task</span> <span class="nv">task-page</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">with-html</span>
+            <span class="p">(</span><span class="ss">:div</span> <span class="s">&quot;Task &quot;</span> <span class="p">(</span><span class="nv">id</span> <span class="nv">task</span><span class="p">))</span>
+            <span class="p">(</span><span class="ss">:h1</span> <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">))</span>
+            <span class="p">(</span><span class="ss">:div</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span> <span class="s">&quot;Done!&quot;</span> <span class="s">&quot;To Do.&quot;</span><span class="p">))</span>
+            <span class="p">(</span><span class="ss">:div</span> <span class="s">&quot;Lorem ipsum…&quot;</span><span class="p">))))</span><span class="go"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-routes">
+<h2>Defining routes<a class="headerlink" href="#defining-routes" title="Permalink to this headline">¶</a></h2>
+<p>At this point we can think of our routes like this:</p>
+<div class="highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">defroutes</span> <span class="nv">tasks-routes</span>
+  <span class="p">(</span><span class="s">&quot;/tasks/\\d+&quot;</span> <span class="nv">&lt;create</span> <span class="k">the</span> <span class="nv">task-page</span> <span class="nv">widget&gt;</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">&quot;/tasks/&quot;</span> <span class="p">(</span><span class="nv">make-task-list</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The regexp <code class="docutils literal notranslate"><span class="pre">\\d+</span></code> will capture any URL that is formed of digits and
+contains at least one.</p>
+<p>As we see, the <code class="docutils literal notranslate"><span class="pre">task-page</span></code> constructor will need to get the id
+matched by the route.</p>
+</div>
+<div class="section" id="path-and-url-parameters">
+<h2>Path and URL parameters<a class="headerlink" href="#path-and-url-parameters" title="Permalink to this headline">¶</a></h2>
+<p>To get the current path, use <code class="docutils literal notranslate"><span class="pre">(weblocks/request:get-path)</span></code>. Then,
+you can find the matching parameters with <code class="docutils literal notranslate"><span class="pre">cl-ppcre</span></code>.</p>
+<p>Our <code class="docutils literal notranslate"><span class="pre">task-page</span></code> constructor becomes:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">make-task-page</span> <span class="p">()</span>
+        <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">path</span> <span class="p">(</span><span class="nv">weblocks/request:get-path</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">id</span> <span class="p">(</span><span class="nb">first</span> <span class="p">(</span><span class="nv">ppcre:all-matches-as-strings</span> <span class="s">&quot;\\d+&quot;</span> <span class="nv">path</span><span class="p">)))</span>
+               <span class="p">(</span><span class="nv">task</span> <span class="p">(</span><span class="nv">get-task</span> <span class="p">(</span><span class="nb">parse-integer</span> <span class="nv">id</span><span class="p">))))</span>
+          <span class="p">(</span><span class="k">if</span> <span class="nv">task</span>
+              <span class="p">(</span><span class="nb">make-instance</span> <span class="ss">&#39;task-page</span> <span class="ss">:task</span> <span class="nv">task</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">not-found</span><span class="p">))))</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">not-found</span> <span class="p">()</span>
+        <span class="s">&quot;Show a 404 not found page.&quot;</span>
+        <span class="p">(</span><span class="nv">with-html</span>
+          <span class="p">(</span><span class="ss">:div</span> <span class="s">&quot;Task not found.&quot;</span><span class="p">)))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>And our router is simply:</p>
+<div class="highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="nv">TODO&gt;</span> <span class="p">(</span><span class="nv">defroutes</span> <span class="nv">tasks-routes</span>
+        <span class="p">(</span><span class="s">&quot;/tasks/\\d+&quot;</span> <span class="p">(</span><span class="nv">make-task-page</span><span class="p">))</span>
+        <span class="p">(</span><span class="s">&quot;/tasks/&quot;</span> <span class="p">(</span><span class="nv">make-task-list</span> <span class="s">&quot;Make my first Weblocks app&quot;</span>
+                                   <span class="s">&quot;Deploy it somewhere&quot;</span>
+                                   <span class="s">&quot;Have a profit&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">defroutes</span></code> macro creates a new class and its constructor, named
+<code class="docutils literal notranslate"><span class="pre">make-&lt;class-name&gt;</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is important to use the constructor instead of <code class="docutils literal notranslate"><span class="pre">make-instance</span></code>, as it defines properties on the fly.</p>
+</div>
+</div>
+<div class="section" id="redirections">
+<h2>Redirections<a class="headerlink" href="#redirections" title="Permalink to this headline">¶</a></h2>
+<p>To perform redirections, use <code class="docutils literal notranslate"><span class="pre">weblocks/response:redirect</span> <span class="pre">&quot;/url&quot;</span></code>:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defroutes</span> <span class="nv">tasks-routes</span>
+        <span class="p">(</span><span class="s">&quot;/tasks/\\d+&quot;</span> <span class="p">(</span><span class="nv">make-task-page</span><span class="p">))</span>
+        <span class="p">(</span><span class="s">&quot;/tasks/list/?&quot;</span> <span class="p">(</span><span class="nv">weblocks/response:redirect</span> <span class="s">&quot;/tasks/&quot;</span><span class="p">))</span>  <span class="c1">;; &lt;-- redirection</span>
+        <span class="p">(</span><span class="s">&quot;/tasks/&quot;</span> <span class="p">(</span><span class="nv">make-task-list</span> <span class="s">&quot;Make my first Weblocks app&quot;</span>
+                                   <span class="s">&quot;Deploy it somewhere&quot;</span>
+                                   <span class="s">&quot;Have a profit&quot;</span><span class="p">)))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>Here the trailing <code class="docutils literal notranslate"><span class="pre">/?</span></code> allows to catch <code class="docutils literal notranslate"><span class="pre">/tasks/list</span></code> and <code class="docutils literal notranslate"><span class="pre">/tasks/list/</span></code>.</p>
+<p>And indeed, contrary to what we stated in the introduction,
+<code class="docutils literal notranslate"><span class="pre">redirect</span></code> is not a widget.</p>
+</div>
+<div class="section" id="final-steps">
+<h2>Final steps<a class="headerlink" href="#final-steps" title="Permalink to this headline">¶</a></h2>
+<p>Make our router the main widget for this session:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">weblocks/session:init</span> <span class="p">((</span><span class="nv">app</span> <span class="nv">tasks</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">app</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">make-tasks-routes</span><span class="p">))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>Reset the session:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">reset</span> <span class="p">()</span>
+        <span class="p">(</span><span class="nb">setf</span> <span class="vg">*counter*</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">weblocks/debug:reset-latest-session</span><span class="p">))</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">reset</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>And access the app at <code class="docutils literal notranslate"><span class="pre">http://localhost:40000/tasks/</span></code>.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/routing.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017, group of lisp hackers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

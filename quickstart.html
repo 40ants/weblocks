@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Quickstart &#8212; weblocks/reblocks dev
+ documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Routing" href="routing.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          weblocks/reblocks</a>
+        <span class="navbar-text navbar-version pull-left"><b>dev
+</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="changelog.html">Changelog</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Documentation <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Components of Weblocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Request Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session.html">Using the Session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="continuations.html">Continuation-based tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependency handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">HTML generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Weblocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">ChangeLog</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Quickstart</a><ul>
+<li><a class="reference internal" href="#the-task-widget">The Task widget</a></li>
+<li><a class="reference internal" href="#the-tasks-list-widget">The Tasks-list widget</a></li>
+<li><a class="reference internal" href="#adding-tasks">Adding tasks</a></li>
+<li><a class="reference internal" href="#toggle-tasks">Toggle tasks</a></li>
+<li><a class="reference internal" href="#what-is-next">What is next?</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This version of Weblocks is not in Quicklisp yet. To
+install it you need to clone the repository somewhere where
+ASDF will find it, for example, to the <code class="docutils literal notranslate"><span class="pre">~/common-lisp/</span></code> directory.
+You also need to clone <a class="reference external" href="https://github.com/40ants/weblocks-ui/">weblocks-ui</a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">You can also install the <a class="reference external" href="https://ultralisp.org/">Ultralisp</a> Quicklisp distribution where all Weblocks-related libraries are present and up to date.</p>
+</div>
+<p>Load weblocks and create a package for a sandbox:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">CL-USER&gt; </span><span class="p">(</span><span class="nv">ql-dist:install-dist</span> <span class="s">&quot;http://dist.ultralisp.org/&quot;</span>
+                               <span class="ss">:prompt</span> <span class="no">nil</span><span class="p">)</span><span class="go"></span>
+<span class="gp">CL-USER&gt; </span><span class="p">(</span><span class="nv">ql:quickload</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:weblocks</span> <span class="ss">:weblocks-ui</span> <span class="ss">:find-port</span><span class="p">))</span><span class="go"></span>
+<span class="gp">CL-USER&gt; </span><span class="p">(</span><span class="nb">defpackage</span> <span class="nv">todo</span>
+           <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span>
+                 <span class="ss">#:weblocks-ui/form</span>
+                 <span class="ss">#:weblocks/html</span><span class="p">)</span>
+           <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks/widget</span>
+                    <span class="ss">#:render</span>
+                    <span class="ss">#:update</span>
+                    <span class="ss">#:defwidget</span><span class="p">)</span>
+           <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks/actions</span>
+                    <span class="ss">#:make-js-action</span><span class="p">)</span>
+           <span class="p">(</span><span class="ss">:import-from</span> <span class="ss">#:weblocks/app</span>
+                    <span class="ss">#:defapp</span><span class="p">))</span><span class="go"></span>
+<span class="go">#&lt;PACKAGE &quot;TODO&quot;&gt;</span>
+<span class="gp">CL-USER&gt; </span><span class="p">(</span><span class="nb">in-package</span> <span class="nv">todo</span><span class="p">)</span><span class="go"></span>
+<span class="go">#&lt;PACKAGE &quot;TODO&quot;&gt;</span>
+</pre></div>
+</div>
+<p>Now, create an application:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defapp</span> <span class="nv">tasks</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>By default, the name of the app defines the url where it is
+accessible. Here, the “tasks” app will be accessible under
+<code class="docutils literal notranslate"><span class="pre">http://localhost:40000/tasks</span></code>. We can change it with the
+<code class="docutils literal notranslate"><span class="pre">:prefix</span></code> argument:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defapp</span> <span class="nv">tasks</span>
+         <span class="ss">:prefix</span> <span class="s">&quot;/&quot;</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>Now our app runs under the root url.</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">weblocks/debug:on</span><span class="p">)</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defvar</span> <span class="vg">*port*</span> <span class="p">(</span><span class="nv">find-port:find-port</span><span class="p">))</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">weblocks/server:start</span> <span class="ss">:port</span> <span class="vg">*port*</span><span class="p">)</span><span class="go"></span>
+<span class="go"> &lt;INFO&gt; [19:41:00] weblocks/server server.lisp (start) -</span>
+<span class="go">  Starting weblocks WEBLOCKS/SERVER::PORT: 40000</span>
+<span class="go">  WEBLOCKS/SERVER::SERVER-TYPE: :HUNCHENTOOT DEBUG: T</span>
+<span class="go"> &lt;INFO&gt; [19:41:00] weblocks/server server.lisp (start-server) -</span>
+<span class="go">  Starting webserver on WEBLOCKS/SERVER::INTERFACE: &quot;localhost&quot;</span>
+<span class="go">  WEBLOCKS/SERVER::PORT: 40000 DEBUG: T</span>
+<span class="go"> #&lt;SERVER port=40000 running&gt;</span>
+<span class="go"> (NIL)</span>
+</pre></div>
+</div>
+<p>Open <a class="reference external" href="http://localhost:40000/tasks/">http://localhost:40000/tasks/</a> in your browser (double check the port) and you’ll see a
+text like that:</p>
+<div class="highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="nv">No</span> <span class="nv">weblocks/session:init</span> <span class="nc">method</span> <span class="nv">defined.</span>
+<span class="nv">Please</span> <span class="nv">define</span> <span class="nv">a</span> <span class="nc">method</span> <span class="nv">weblocks.session:init</span> <span class="nv">to</span> <span class="nv">initialize</span> <span class="nv">a</span> <span class="nv">session.</span>
+
+<span class="nv">It</span> <span class="nv">could</span> <span class="nv">be</span> <span class="nv">something</span> <span class="nv">simple,</span> <span class="nv">like</span> <span class="nv">this</span> <span class="nv">one:</span>
+
+<span class="p">(</span><span class="nb">defmethod</span> <span class="nv">weblocks/session:init</span> <span class="p">((</span><span class="nv">app</span> <span class="nv">tasks</span><span class="p">))</span>
+            <span class="s">&quot;Hello world!&quot;</span><span class="p">)</span>
+
+<span class="nv">Read</span> <span class="nv">more</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">documentaion.</span>
+</pre></div>
+</div>
+<p>It means that you didn’t write any code for your application. Let’s do
+it now and make an application which outputs a list of tasks.</p>
+<p>In the end, we’ll build the mandatory TODO-list app:</p>
+<img alt="the TODO-list app in Weblocks." class="align-center" src="_images/quickstart-check-task.gif" />
+<div class="section" id="the-task-widget">
+<h2>The Task widget<a class="headerlink" href="#the-task-widget" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defwidget</span> <span class="nv">task</span> <span class="p">()</span>
+        <span class="p">((</span><span class="nv">title</span>
+          <span class="ss">:initarg</span> <span class="ss">:title</span>
+          <span class="ss">:accessor</span> <span class="nv">title</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">done</span>
+          <span class="ss">:initarg</span> <span class="ss">:done</span>
+          <span class="ss">:initform</span> <span class="no">nil</span>
+          <span class="ss">:accessor</span> <span class="nv">done</span><span class="p">)))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>This code defines a task widget, the building block of our
+application. <code class="docutils literal notranslate"><span class="pre">defwidget</span></code> is similar to Common Lisp’s <code class="docutils literal notranslate"><span class="pre">defclass</span></code>,
+in fact it is only a wrapper around it. It takes a name, a list of
+super-classes (here <code class="docutils literal notranslate"><span class="pre">()</span></code>) and a list of slot definitions.</p>
+<p>We can create a task with <code class="docutils literal notranslate"><span class="pre">make-instance</span></code>:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defvar</span> <span class="vg">*task-1*</span> <span class="p">(</span><span class="nb">make-instance</span> <span class="ss">&#39;task</span> <span class="ss">:title</span> <span class="s">&quot;Make my first Weblocks app&quot;</span><span class="p">))</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="vg">*task-1*</span>
+<span class="go">#&lt;TASK {1005406F33}&gt;</span>
+</pre></div>
+</div>
+<p>Above, <code class="docutils literal notranslate"><span class="pre">:title</span></code> is the initarg, and since we didn’t give a <code class="docutils literal notranslate"><span class="pre">:done</span></code>
+argument, it will be instanciated to its <code class="docutils literal notranslate"><span class="pre">:initform</span></code>, which is <code class="docutils literal notranslate"><span class="pre">nil</span></code>.</p>
+<p>We defined accessors for both slots, so we can read and set them easily:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">title</span> <span class="vg">*task-1*</span><span class="p">)</span><span class="go"></span>
+<span class="go">&quot;Make my first Weblocks app&quot;</span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">done</span> <span class="vg">*TASK-1*</span><span class="p">)</span><span class="go"></span>
+<span class="go">NIL</span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">done</span> <span class="vg">*TASK-1*</span><span class="p">)</span> <span class="no">t</span><span class="p">)</span><span class="go"></span>
+<span class="go">T</span>
+</pre></div>
+</div>
+<p>We define a constructor for our task:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">make-task</span> <span class="p">(</span><span class="nv">title</span> <span class="k">&amp;key</span> <span class="nv">done</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">make-instance</span> <span class="ss">&#39;task</span> <span class="ss">:title</span> <span class="nv">title</span> <span class="ss">:done</span> <span class="nv">done</span><span class="p">))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>It isn’t mandatory, but it is good practice to do so.</p>
+<p>If you are not familiar with the Common Lisp Object System (CLOS), you
+can have a look at <a class="reference external" href="http://www.gigamonkeys.com/book/object-reorientation-classes.html">Practical Common Lisp</a>
+and the <a class="reference external" href="https://lispcookbook.github.io/cl-cookbook/clos.html">Common Lisp Cookbook</a>.</p>
+<p>Now let’s carry on with our application.</p>
+</div>
+<div class="section" id="the-tasks-list-widget">
+<h2>The Tasks-list widget<a class="headerlink" href="#the-tasks-list-widget" title="Permalink to this headline">¶</a></h2>
+<p>Below we define a more general widget that contains a list of tasks,
+and we tell Weblocks how to display them by <em>specializing</em> the
+<code class="docutils literal notranslate"><span class="pre">render</span></code> method for our newly defined classes:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">defwidget</span> <span class="nv">task-list</span> <span class="p">()</span>
+        <span class="p">((</span><span class="nv">tasks</span>
+          <span class="ss">:initarg</span> <span class="ss">:tasks</span>
+          <span class="ss">:accessor</span> <span class="nv">tasks</span><span class="p">)))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">render</span> <span class="p">((</span><span class="nv">task</span> <span class="nv">task</span><span class="p">))</span>
+        <span class="s">&quot;Render a task.&quot;</span>
+        <span class="p">(</span><span class="nv">with-html</span>
+              <span class="p">(</span><span class="ss">:span</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">with-html</span>
+                               <span class="p">(</span><span class="ss">:s</span> <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">)))))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">render</span> <span class="p">((</span><span class="nv">widget</span> <span class="nv">task-list</span><span class="p">))</span>
+        <span class="s">&quot;Render a list of tasks.&quot;</span>
+        <span class="p">(</span><span class="nv">with-html</span>
+              <span class="p">(</span><span class="ss">:h1</span> <span class="s">&quot;Tasks&quot;</span><span class="p">)</span>
+              <span class="p">(</span><span class="ss">:ul</span>
+                <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">task</span> <span class="nv">in</span> <span class="p">(</span><span class="nv">tasks</span> <span class="nv">widget</span><span class="p">)</span> <span class="nb">do</span>
+                      <span class="p">(</span><span class="ss">:li</span> <span class="p">(</span><span class="nv">render</span> <span class="nv">task</span><span class="p">))))))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">with-html</span></code> macro uses
+<a class="reference external" href="https://github.com/ruricolist/spinneret/">Spinneret</a> under the hood,
+but you can use anything that outputs html.</p>
+<p>We can check how the generated html looks like by calling <code class="docutils literal notranslate"><span class="pre">render</span></code> in the REPL:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">render</span> <span class="vg">*task-1*</span><span class="p">)</span><span class="go"></span>
+<span class="go">&lt;div class=&quot;widget task&quot;&gt;&lt;span&gt;Make my first Weblocks app&lt;/span&gt;</span>
+<span class="go">&lt;/div&gt;</span>
+<span class="go">NIL</span>
+</pre></div>
+</div>
+<p>But we still don’t get anything in the browser.</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defun</span> <span class="nv">make-task-list</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nb">rest</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">tasks</span> <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">title</span> <span class="nv">in</span> <span class="nb">rest</span>
+                        <span class="nv">collect</span> <span class="p">(</span><span class="nv">make-task</span> <span class="nv">title</span><span class="p">))))</span>
+          <span class="p">(</span><span class="nb">make-instance</span> <span class="ss">&#39;task-list</span> <span class="ss">:tasks</span> <span class="nv">tasks</span><span class="p">)))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">weblocks/session:init</span> <span class="p">((</span><span class="nv">app</span> <span class="nv">tasks</span><span class="p">))</span>
+         <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">app</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">make-task-list</span> <span class="s">&quot;Make my first Weblocks app&quot;</span>
+                         <span class="s">&quot;Deploy it somewhere&quot;</span>
+                         <span class="s">&quot;Have a profit&quot;</span><span class="p">))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>This defines a list of tasks (for simplicity, they are defined as a
+list in memory) and returns what will be our session’s root widget..</p>
+<p>Restart the application:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">weblocks/debug:reset-latest-session</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>Right now it should look like this:</p>
+<img alt="Our first list of tasks." class="align-center" src="_images/quickstart-list.png" />
+</div>
+<div class="section" id="adding-tasks">
+<h2>Adding tasks<a class="headerlink" href="#adding-tasks" title="Permalink to this headline">¶</a></h2>
+<p>Now, we’ll add some ability to interact with a list – to add some tasks
+into it, like so:</p>
+<img alt="Adding tasks in our TODO-list interactively." class="align-center" src="_images/quickstart-add-task.gif" />
+<p>Import a new module, <code class="docutils literal notranslate"><span class="pre">weblocks-ui</span></code> to help in creating forms and other UI elements:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&quot;weblocks-ui&quot;</span><span class="p">)</span><span class="go"></span>
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">use-package</span> <span class="ss">:weblocks-ui/form</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>Write a new <code class="docutils literal notranslate"><span class="pre">add-task</span></code> method and modify the <code class="docutils literal notranslate"><span class="pre">render</span></code> method of a
+task-list to call <code class="docutils literal notranslate"><span class="pre">add-task</span></code> in response to <code class="docutils literal notranslate"><span class="pre">POST</span></code> method:</p>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">add-task</span> <span class="p">((</span><span class="nv">task-list</span> <span class="nv">task-list</span><span class="p">)</span> <span class="nv">title</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">make-task</span> <span class="nv">title</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">tasks</span> <span class="nv">task-list</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">update</span> <span class="nv">task-list</span><span class="p">))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">render</span> <span class="p">((</span><span class="nv">task-list</span> <span class="nv">task-list</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">with-html</span>
+          <span class="p">(</span><span class="ss">:h1</span> <span class="s">&quot;Tasks&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">task</span> <span class="nv">in</span> <span class="p">(</span><span class="nv">tasks</span> <span class="nv">task-list</span><span class="p">)</span> <span class="nb">do</span>
+            <span class="p">(</span><span class="nv">render</span> <span class="nv">task</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">with-html-form</span> <span class="p">(</span><span class="ss">:POST</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="k">&amp;key</span> <span class="nv">title</span> <span class="k">&amp;allow-other-keys</span><span class="p">)</span>
+                                         <span class="p">(</span><span class="nv">add-task</span> <span class="nv">task-list</span> <span class="nv">title</span><span class="p">)))</span>
+            <span class="p">(</span><span class="ss">:input</span> <span class="ss">:type</span> <span class="s">&quot;text&quot;</span>
+                    <span class="ss">:name</span> <span class="s">&quot;title&quot;</span>
+                    <span class="ss">:placeholder</span> <span class="s">&quot;Task&#39;s title&quot;</span><span class="p">)</span>
+            <span class="p">(</span><span class="ss">:input</span> <span class="ss">:type</span> <span class="s">&quot;submit&quot;</span>
+                    <span class="ss">:value</span> <span class="s">&quot;Add&quot;</span><span class="p">))))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nv">weblocks/debug:reset-latest-session</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p>The method <code class="docutils literal notranslate"><span class="pre">add-task</span></code> does only two simple things:</p>
+<ul class="simple">
+<li>it adds a task into a list;</li>
+<li>it tells Weblocks that our task list should be redrawn.</li>
+</ul>
+<p>This second point is really important because it allows Weblocks to render
+necessary parts of the page on the server and to inject it into the HTML DOM
+in the browser. Here it rerenders the task-list widget, but we can as well <code class="docutils literal notranslate"><span class="pre">update</span></code>
+a specific task widget, as we’ll do soon.</p>
+<p>We are calling <code class="docutils literal notranslate"><span class="pre">add-task</span></code> from a lambda function to catch a
+<code class="docutils literal notranslate"><span class="pre">task-list</span></code> in a closure and make it availabe when weblocks will
+process AJAX request with <code class="docutils literal notranslate"><span class="pre">POST</span></code> parameters later.</p>
+<p>Another block in our new version of <code class="docutils literal notranslate"><span class="pre">render</span></code> of a <cite>task-list</cite> is the form:</p>
+<div class="highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">with-html-form</span> <span class="p">(</span><span class="ss">:POST</span> <span class="nf">#&#39;</span><span class="nv">add-task</span><span class="p">)</span>
+   <span class="p">(</span><span class="ss">:input</span> <span class="ss">:type</span> <span class="s">&quot;text&quot;</span>
+    <span class="ss">:name</span> <span class="s">&quot;task&quot;</span>
+    <span class="ss">:placeholder</span> <span class="s">&quot;Task&#39;s title&quot;</span><span class="p">)</span>
+   <span class="p">(</span><span class="ss">:input</span> <span class="ss">:type</span> <span class="s">&quot;submit&quot;</span>
+    <span class="ss">:value</span> <span class="s">&quot;Add&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>It defines a text field, a submit button and an action to perform on
+form submit.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This is really amazing!</p>
+<p class="last">With Weblocks, you can handle all the business logic
+server-side, because an action can be any lisp function, even an
+anonymous lambda, closuring all necessary variables.</p>
+</div>
+<p>Restart the application and reload the page. Test your form now and see in a
+<a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools/inspect-styles/">Webinspector</a> how Weblocks sends requests to the server and receives
+HTML code with rendered HTML block.</p>
+<p>Now we’ll make our application really useful – we’ll add code to toggle the tasks’ status.</p>
+</div>
+<div class="section" id="toggle-tasks">
+<h2>Toggle tasks<a class="headerlink" href="#toggle-tasks" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-common-lisp-repl notranslate"><div class="highlight"><pre><span></span><span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">toggle</span> <span class="p">((</span><span class="nv">task</span> <span class="nv">task</span><span class="p">))</span>
+        <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+                  <span class="no">nil</span>
+                  <span class="no">t</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">update</span> <span class="nv">task</span><span class="p">))</span><span class="go"></span>
+
+<span class="gp">TODO&gt; </span><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">render</span> <span class="p">((</span><span class="nv">task</span> <span class="nv">task</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">with-html</span>
+          <span class="p">(</span><span class="ss">:p</span> <span class="p">(</span><span class="ss">:input</span> <span class="ss">:type</span> <span class="s">&quot;checkbox&quot;</span>
+            <span class="ss">:checked</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+            <span class="ss">:onclick</span> <span class="p">(</span><span class="nv">make-js-action</span>
+                      <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="k">&amp;key</span> <span class="k">&amp;allow-other-keys</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">toggle</span> <span class="nv">task</span><span class="p">))))</span>
+              <span class="p">(</span><span class="ss">:span</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">done</span> <span class="nv">task</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">with-html</span>
+                         <span class="c1">;; strike</span>
+                         <span class="p">(</span><span class="ss">:s</span> <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">)))</span>
+                 <span class="p">(</span><span class="nv">title</span> <span class="nv">task</span><span class="p">))))))</span><span class="go"></span>
+</pre></div>
+</div>
+<p>We defined a small helper to toggle the <code class="docutils literal notranslate"><span class="pre">done</span></code> attribute, and we’ve
+modified our task rendering function by adding a code to render a
+checkbox with an anonymous lisp function, attached to its
+<code class="docutils literal notranslate"><span class="pre">onclick</span></code> attribute.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">make-js-action</span></code> returns a Javascript code, which calls
+back a lisp lambda function when evaluated in the browser.  And
+because <code class="docutils literal notranslate"><span class="pre">toggle</span></code> updates a Task widget, Weblocks returns on this
+callback a new prerendered HTML for this one task only.</p>
+</div>
+<div class="section" id="what-is-next">
+<h2>What is next?<a class="headerlink" href="#what-is-next" title="Permalink to this headline">¶</a></h2>
+<p>As a homework:</p>
+<ol class="arabic simple">
+<li>Play with lambdas and add a “Delete” button next after
+each task.</li>
+<li>Add the ability to sort tasks by name or by completion flag.</li>
+<li>Save tasks in a database (the <a class="reference external" href="https://lispcookbook.github.io/cl-cookbook/databases.html">Cookbook</a> might help).</li>
+<li>Read the <a class="reference external" href="/weblocks/routing.html">routing tutorial</a>.</li>
+<li>Read the rest of the documentation and make a real application, using the full
+power of Common Lisp.</li>
+</ol>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/quickstart.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017, group of lisp hackers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
